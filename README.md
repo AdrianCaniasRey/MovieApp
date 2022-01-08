@@ -16,7 +16,7 @@ Para la compilacion y generacion de apk sera necesario tener instalado en el equ
 `npm install`
 
 ## Android
-## Configuracion previa
+### Configuracion previa
 Junto al zip entregado SIGNER.zip se proporcionan la keystore junto con su informacion, sera necesario realizar los siguientes pasos para que las compilaciones con los comandos proporcioandos tengan efecto.
 1. Colocar el archivo release-prod.jks en android/app/
 2. Colocar el archivo keystore.properties en android/
