@@ -1,0 +1,49 @@
+<div class="background">
+  <img [src]="movie.Poster" (error)="imgError($event)" alt="poster" />
+</div>
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <h3>{{movie.Title}}</h3>
+      <p>{{movie.Year}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <!-- Poster -->
+    <ion-col size="4" class="poster">
+      <img [src]="movie.Poster" (error)="imgError($event)" alt="" />
+      <h6>{{movie.Released}}</h6>
+      <div class="vl"></div>
+    </ion-col>
+    <!-- Genres & Plot -->
+    <ion-col size="8">
+      <!-- Genres -->
+      <div class="chips">
+        <ion-chip *ngFor="let genre of genres" color="light">
+          <ion-label>{{genre}}</ion-label>
+        </ion-chip>
+      </div>
+      <!-- Plot -->
+      <div class="plot">
+        <p>{{plot}}</p>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <!-- Cast -->
+    <ion-col size="12">
+      <h5>Actors</h5>
+      <div class="chips">
+        <ion-chip *ngFor="let actor of actors" color="primary">
+          <ion-label>{{actor}}</ion-label>
+        </ion-chip>
+      </div>
+      <h5>Director</h5>
+      <div class="chips">
+        <ion-chip *ngFor="let director of directors" color="success">
+          <ion-label>{{director}}</ion-label>
+        </ion-chip>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

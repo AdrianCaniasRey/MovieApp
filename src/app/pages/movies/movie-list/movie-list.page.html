@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Movies</ion-title>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/" routerDirection="root">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <app-movie-search-form (formSubmit)="searchBy($event)"></app-movie-search-form>
+  <div *ngIf="movieList$ | async as result; else loading" class="list">
+    <app-movie-card class="card" (click)="openMovieDetail(movie.imdbID, movie.Title)"
+      *ngFor="let movie of result.Search" [title]="movie.Title" [year]="movie.Year" [imgUrl]="movie.Poster">
+    </app-movie-card>
+    <ion-infinite-scroll threshold="800px" (ionInfinite)="nextPage($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Retrieving movies...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <ng-template #loading>
+    <div class="loader">
+      <app-loading></app-loading>
+    </div>
+  </ng-template>
+</ion-content>

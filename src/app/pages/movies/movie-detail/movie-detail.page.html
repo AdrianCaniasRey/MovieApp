@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/" routerDirection="root">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <div class="movie" *ngIf="movie$ | async as movie; else loading">
+    <app-movie-info [movie]="movie"></app-movie-info>
+  </div>
+  <ng-template #loading>
+    <app-loading></app-loading>>
+  </ng-template>
+</ion-content>

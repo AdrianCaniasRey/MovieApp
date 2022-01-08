@@ -1,0 +1,35 @@
+<div class="container">
+  <article class="project-info">
+    <ion-text color="primary" class="title">
+      <h2>About project</h2>
+    </ion-text>
+    <section>
+      <ion-text color="primary">
+        <h5>Info</h5>
+      </ion-text>
+      <ion-text>
+        MovieApp is an app where you can search movies by title and release year and also allow users to view some extra
+        information about them by clicking.
+      </ion-text>
+    </section>
+    <section>
+      <ion-text color="primary">
+        <h5>Technologies</h5>
+      </ion-text>
+      <ion-text>
+        <p>Technologies that the project use:</p>
+      </ion-text>
+      <ul>
+        <li class="tech-item" *ngFor="let technologie of technologies">{{technologie}}</li>
+      </ul>
+    </section>
+    <section>
+      <ion-text color="primary">
+        <h5>Available on</h5>
+      </ion-text>
+      <ion-text>
+        <p>MovieApp is available on web, android and ios.</p>
+      </ion-text>
+    </section>
+  </article>
+</div>

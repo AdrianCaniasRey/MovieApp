@@ -1,0 +1,30 @@
+<ion-menu side="start" menuId="first" contentId="menu">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu | {{icon}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color="dark">
+    <ion-list class="ion-no-padding">
+      <!-- Home -->
+      <ion-item (click)="navigate('/home')" color="dark">
+        <ion-icon name="home" slot="start"></ion-icon>
+        <ion-label>
+          About
+        </ion-label>
+      </ion-item>
+      <!-- Movie list -->
+      <ion-item (click)="navigate('/movie-list')" color="dark">
+        <ion-icon name="film" slot="start"></ion-icon>
+        <ion-label>Movies</ion-label>
+      </ion-item>
+      <!-- Web view -->
+      <ion-item (click)="openWeb()" color="dark">
+        <ion-icon name="logo-github" slot="start"></ion-icon>
+        <ion-label>GitHub</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="menu"></ion-router-outlet>

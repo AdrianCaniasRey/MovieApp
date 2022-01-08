@@ -1,0 +1,22 @@
+<app-menu></app-menu>
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      About
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="dark">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <app-personal-info></app-personal-info>
+        <app-project-info></app-project-info>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,9 @@
+<div class="card">
+  <img [src]="imgUrl" (error)="imgErrorHandler($event)" />
+  <div class="card-title">
+    <ion-text color="light">
+      <h5>{{ title }}</h5>
+      <h6>{{ year }}</h6>
+    </ion-text>
+  </div>
+</div>
