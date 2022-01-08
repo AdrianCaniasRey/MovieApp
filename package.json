@@ -1,8 +1,8 @@
 {
-  "name": "movieApp",
+  "name": "movie-app",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Adrian Canias rey",
+  "homepage": "https://github.com/AdrianCaniasRey/MovieApp",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
