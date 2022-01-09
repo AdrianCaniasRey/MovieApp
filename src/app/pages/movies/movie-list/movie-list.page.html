@@ -11,7 +11,7 @@
 
 <ion-content color="dark">
   <app-movie-search-form (formSubmit)="searchBy($event)"></app-movie-search-form>
-  <div *ngIf="movieList$ | async as result; else loading" class="list">
+  <div *ngIf="movieList$ | async as result; else loading" class="movie-list">
     <app-movie-card class="card" *ngFor="let movie of result.movies" [title]="movie.title" [year]="movie.year"
       [imgUrl]="movie.poster" (click)="openMovieDetail(movie.imdbID, movie.title)">
     </app-movie-card>

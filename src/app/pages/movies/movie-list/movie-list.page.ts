@@ -35,8 +35,8 @@ export class MovieListPage implements OnInit, ViewWillEnter {
 
   ngOnInit() {
     console.log('[MovieListPage] ngOnInit: ');
-    this.movieList$ = this.moviesService.retriveMovies.asObservable();
-    this.moviesService.movieServiceAlerts.subscribe(alert => {
+    this.movieList$ = this.moviesService.retriveMovies$();
+    this.moviesService.movieServiceAlerts$().subscribe(alert => {
       this.presentAlert(alert);
     });
   }

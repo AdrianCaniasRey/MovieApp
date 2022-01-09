@@ -16,8 +16,8 @@ import { MovieListResponse } from 'src/app/models/movie-list/movie-list-response
 })
 export class MovieListService {
 
-  retriveMovies: Subject<MovieList> = new Subject();
-  movieServiceAlerts: Subject<string> = new Subject();
+  private movieServiceAlerts: Subject<string> = new Subject();
+  private retriveMovies: Subject<MovieList> = new Subject();
 
   private movieList: MovieList;
   private lastPage = 1;
@@ -42,6 +42,14 @@ export class MovieListService {
       console.log('[MovieListService] getMovies: retrieving movies');
       this.retrieveFromOmdb(this.searchFilter.title, this.searchFilter.year);
     }
+  }
+
+  retriveMovies$(): Observable<MovieList> {
+    return this.retriveMovies.asObservable();
+  }
+
+  movieServiceAlerts$(): Observable<string> {
+    return this.movieServiceAlerts.asObservable();
   }
 
   private newSearch(searchFilter) {
