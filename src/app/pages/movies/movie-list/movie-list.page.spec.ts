@@ -13,7 +13,7 @@ import { of } from 'rxjs';
 
 import { MOVIE_LIST } from '../../../../../spec/response/movie-list';
 
-fdescribe('MovieListPage', () => {
+describe('MovieListPage', () => {
   let component: MovieListPage;
   let fixture: ComponentFixture<MovieListPage>;
 
