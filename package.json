@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "resources": "capacitor-resources -p android,ios",
+    "resources": "capacitor-resources -p android,ios && node ./scripts/copy-resources.js",
     "android_build_debug": "ionic capacitor build android --no-open",
     "android_build_prod": "ionic capacitor build android --no-open --release --prod",
     "android_generate_debug_apk": "ionic capacitor build android --no-open && cd android && gradlew assembleDebug && cd ..",
