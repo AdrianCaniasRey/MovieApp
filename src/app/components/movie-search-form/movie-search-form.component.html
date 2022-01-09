@@ -2,13 +2,11 @@
   <form [formGroup]="searchForm">
     <div class="form">
       <ion-item color="dark">
-        <ion-label for="title" position="floating">Title*</ion-label>
-        <ion-input id="title" type="text" formControlName="title" clearInput="true" debounce="500"
+        <ion-input id="title" type="text" formControlName="title" placeholder="Title*" clearInput="true" debounce="500"
           (ionChange)="sendResponse()"></ion-input>
       </ion-item>
       <ion-item color="dark">
-        <ion-label for="year" position="floating">Year</ion-label>
-        <ion-input if="year" type="number" formControlName="year" clearInput="true" debounce="500"
+        <ion-input if="year" type="number" formControlName="year" placeholder="Year" clearInput="true" debounce="500"
           (ionChange)="sendResponse()"></ion-input>
       </ion-item>
       <ion-icon name="search" color="primary"></ion-icon>
