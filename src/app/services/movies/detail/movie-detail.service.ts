@@ -1,10 +1,12 @@
+// Angular
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+// RxJS
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-
+// Environment
 import { environment } from 'src/environments/environment';
+// My Models
 import { MovieDetail } from 'src/app/models/movie-detail/movie-detail.model';
 import { MovieDetailResponse } from 'src/app/models/movie-detail/movie-detail-responde.model';
 
@@ -23,15 +25,16 @@ export class MovieDetailService {
 
   getMovie(id) {
     if (this.movie && this.lastMovieId === id) {
-      console.log('[returning cached movie]');
+      console.log('[MovieDetailService] getMovie: returning cached movie');
       this.retrieveMovie.next(this.movie);
     } else {
-      console.log('fetching new movie');
+      console.log('[MovieDetailService] getMovie: retrieving movie');
       this.retrieveFromOmdb(id);
     }
   }
 
   private retrieveFromOmdb(id) {
+    console.log('[MovieDetailService] retrieveFromOmdb: ', id);
     this.omdbGetMovie(id).subscribe({
       next: (movie) => {
         this.movie = movie;
@@ -39,7 +42,7 @@ export class MovieDetailService {
         this.retrieveMovie.next(this.movie);
       },
       error: (err) => {
-        console.error(err);
+        console.error('[MovieDetailService] retrieveFromOmdb: ', err);
       }
     });
   }

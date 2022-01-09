@@ -16,6 +16,7 @@ export class ToastService {
 
 
   async show(message: string) {
+    console.log('[ToastService] show: ', message);
     const device = await this.device.getPlatform();
     if (device === 'web') {
       const toast = await this.toastController.create({
@@ -25,7 +26,7 @@ export class ToastService {
       toast.present();
     } else {
       Toast.show({
-        text: message,
+        text: message
       });
     }
   }
