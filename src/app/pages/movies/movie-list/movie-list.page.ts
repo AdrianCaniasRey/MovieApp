@@ -1,7 +1,7 @@
 import { ToastService } from './../../../services/toast.service';
 import { MovieSearchFormComponent } from './../../../components/movie-search-form/movie-search-form.component';
-import { MovieList } from 'src/app/models/movies-list.model';
-import { MoviesService } from 'src/app/services/movies/list/movies.service';
+import { MovieList } from 'src/app/models/movie-list/movies-list.model';
+import { MovieListService } from 'src/app/services/movies/list/movie-list.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
@@ -23,7 +23,7 @@ export class MovieListPage implements OnInit, ViewWillEnter {
 
   constructor(
     private router: Router,
-    private moviesService: MoviesService,
+    private moviesService: MovieListService,
     private toast: ToastService
   ) { }
 

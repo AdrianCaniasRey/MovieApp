@@ -1,4 +1,4 @@
-import { MovieDetail } from '../../models/movie-detail.model';
+import { MovieDetail } from '../../models/movie-detail/movie-detail.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

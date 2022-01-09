@@ -12,8 +12,8 @@
 <ion-content color="dark">
   <app-movie-search-form (formSubmit)="searchBy($event)"></app-movie-search-form>
   <div *ngIf="movieList$ | async as result; else loading" class="list">
-    <app-movie-card class="card" (click)="openMovieDetail(movie.imdbID, movie.Title)"
-      *ngFor="let movie of result.Search" [title]="movie.Title" [year]="movie.Year" [imgUrl]="movie.Poster">
+    <app-movie-card class="card" *ngFor="let movie of result.movies" [title]="movie.title" [year]="movie.year"
+      [imgUrl]="movie.poster" (click)="openMovieDetail(movie.imdbID, movie.title)">
     </app-movie-card>
     <ion-infinite-scroll threshold="800px" (ionInfinite)="nextPage($event)">
       <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Retrieving movies...">

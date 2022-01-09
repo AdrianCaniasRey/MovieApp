@@ -1,4 +1,5 @@
-import { MovieList } from 'src/app/models/movies-list.model';
+import { MovieResponseList } from './../../../models/movie-list/movie-list-response.model';
+import { MovieList } from 'src/app/models/movie-list/movies-list.model';
 import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +10,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class MoviesService {
+export class MovieListService {
 
   retriveMovies: Subject<MovieList> = new Subject();
   movieServiceAlerts: Subject<string> = new Subject();
@@ -32,7 +33,7 @@ export class MoviesService {
   }
 
   getMovies(newSearch = false) {
-    if (this.movieList?.Search.length && !newSearch) {
+    if (this.movieList?.movies.length && !newSearch) {
       console.log('returning cached list');
       this.retriveMovies.next(this.movieList);
     } else {
@@ -45,7 +46,7 @@ export class MoviesService {
     this.omdbGetMovies(title, year, this.lastPage).subscribe({
       next: (res) => {
         this.movieList = {
-          Search: this.movieList?.Search ? [...this.movieList.Search, ...res.Search] : res.Search,
+          movies: this.movieList?.movies ? [...this.movieList.movies, ...res.movies] : res.movies,
           totalResults: res.totalResults
         };
         ++this.lastPage;
@@ -60,13 +61,25 @@ export class MoviesService {
 
   private omdbGetMovies(title: string, year: number, page: number): Observable<MovieList> {
     const fieldYear = year ? `&y=${year}` : '';
-    return this.http.get<MovieList>(`https://www.omdbapi.com/?s=${title}&page=${page}${fieldYear}&
+    return this.http.get<MovieResponseList>(`https://www.omdbapi.com/?s=${title}&page=${page}${fieldYear}&
     type=movie&apikey=${environment.omdApiKey}`)
       .pipe(map(res => {
         if (res.Response === 'False') {
           throw new Error(res.Error);
         }
-        return res;
+        return this.toClient(res);
       }));
+  }
+
+  private toClient(res: MovieResponseList): MovieList {
+    return {
+      movies: res.Search.map(item => ({
+        title: item.Title,
+        year: item.Year,
+        imdbID: item.imdbID,
+        poster: item.Poster
+      })),
+      totalResults: res.totalResults
+    };
   }
 }

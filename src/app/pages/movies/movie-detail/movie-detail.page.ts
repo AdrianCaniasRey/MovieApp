@@ -2,7 +2,7 @@ import { ViewDidEnter } from '@ionic/angular';
 import { MovieService } from './../../../services/movies/detail/movie.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MovieDetail } from 'src/app/models/movie-detail.model';
+import { MovieDetail } from 'src/app/models/movie-detail/movie-detail.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
