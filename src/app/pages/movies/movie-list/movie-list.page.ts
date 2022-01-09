@@ -39,8 +39,7 @@ export class MovieListPage implements OnInit, ViewWillEnter {
   }
 
   searchBy(value) {
-    this.moviesService.newSearch(value);
-    this.moviesService.getMovies(true);
+    this.moviesService.getMovies(true, value);
   }
 
   nextPage(event) {

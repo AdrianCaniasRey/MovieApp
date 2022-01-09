@@ -26,13 +26,10 @@ export class MovieListService {
     private http: HttpClient
   ) { }
 
-  newSearch(value) {
-    this.movieList = null;
-    this.lastPage = 1;
-    this.searchFilter = value;
-  }
-
-  getMovies(newSearch = false) {
+  getMovies(newSearch = false, searchFilter?) {
+    if (searchFilter) {
+      this.newSearch(searchFilter);
+    }
     if (this.movieList?.movies.length && !newSearch) {
       console.log('returning cached list');
       this.retriveMovies.next(this.movieList);
@@ -41,6 +38,13 @@ export class MovieListService {
       this.retrieveFromOmdb(this.searchFilter.title, this.searchFilter.year);
     }
   }
+
+  private newSearch(searchFilter) {
+    this.movieList = null;
+    this.lastPage = 1;
+    this.searchFilter = searchFilter;
+  }
+
   private retrieveFromOmdb(title: string, year: number) {
     console.log('retrieving from omdb on page: ', this.lastPage);
     this.omdbGetMovies(title, year, this.lastPage).subscribe({
