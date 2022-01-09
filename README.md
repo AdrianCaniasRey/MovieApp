@@ -11,6 +11,9 @@ Para la compilacion y generacion de apk sera necesario tener instalado en el equ
 - Gradle
 - Android Studio
 
+## Ofuscacion
+La ofuscacion de la apk se realiza en tiempo de compilacion de la misma, mediante R8 y el uso de una serie de reglas en proguard para el correcto funcionamiento de los plugins de capacitor
+
 ## Instalacion
 - Una vez clonado el proyecto realizaremos la intalacion de los paquetes.
 `npm install`
