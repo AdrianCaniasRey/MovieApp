@@ -14,6 +14,11 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12">
+        <div class="platform">
+          <ion-text [color]="platformColor">
+            <h3>You are on {{platform}}</h3>
+          </ion-text>
+        </div>
         <app-personal-info></app-personal-info>
         <app-project-info></app-project-info>
       </ion-col>
