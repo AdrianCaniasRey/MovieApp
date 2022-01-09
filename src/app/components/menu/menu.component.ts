@@ -38,7 +38,7 @@ export class MenuComponent implements OnInit {
     if (mobile.includes(plarform)) {
       return plarform === 'android' ? 'logo-android' : 'logo-apple';
     }
-    return 'menu';
+    return 'earth';
   }
 
 }
