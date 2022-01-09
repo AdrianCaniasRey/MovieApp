@@ -15,7 +15,7 @@ import { MovieDetailResponse } from 'src/app/models/movie-detail/movie-detail-re
 })
 export class MovieDetailService {
 
-  retrieveMovie: Subject<MovieDetail> = new Subject();
+  private retrieveMovie: Subject<MovieDetail> = new Subject();
   private movie: MovieDetail;
   private lastMovieId: string;
 
@@ -31,6 +31,10 @@ export class MovieDetailService {
       console.log('[MovieDetailService] getMovie: retrieving movie');
       this.retrieveFromOmdb(id);
     }
+  }
+
+  retrieveMovie$(): Observable<MovieDetail> {
+    return this.retrieveMovie.asObservable();
   }
 
   private retrieveFromOmdb(id) {

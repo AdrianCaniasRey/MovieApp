@@ -29,7 +29,7 @@ export class MovieDetailPage implements OnInit, ViewDidEnter {
   }
 
   ngOnInit() {
-    this.movie$ = this.movieService.retrieveMovie.asObservable();
+    this.movie$ = this.movieService.retrieveMovie$();
   }
 
   imgError(event) {
