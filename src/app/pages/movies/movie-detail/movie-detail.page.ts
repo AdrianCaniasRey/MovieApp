@@ -1,9 +1,9 @@
 import { ViewDidEnter } from '@ionic/angular';
-import { MovieService } from './../../../services/movies/detail/movie.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MovieDetail } from 'src/app/models/movie-detail/movie-detail.model';
 import { ActivatedRoute } from '@angular/router';
+import { MovieDetailService } from 'src/app/services/movies/detail/movie-detail.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -18,7 +18,7 @@ export class MovieDetailPage implements OnInit, ViewDidEnter {
 
   constructor(
     private route: ActivatedRoute,
-    private movieService: MovieService
+    private movieService: MovieDetailService
   ) {
     this.movieId = this.route.snapshot.paramMap.get('id');
     this.title = this.route.snapshot.paramMap.get('title');

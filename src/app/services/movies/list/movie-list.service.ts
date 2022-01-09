@@ -1,4 +1,4 @@
-import { MovieResponseList } from './../../../models/movie-list/movie-list-response.model';
+import { MovieListResponse } from './../../../models/movie-list/movie-list-response.model';
 import { MovieList } from 'src/app/models/movie-list/movies-list.model';
 import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -61,7 +61,7 @@ export class MovieListService {
 
   private omdbGetMovies(title: string, year: number, page: number): Observable<MovieList> {
     const fieldYear = year ? `&y=${year}` : '';
-    return this.http.get<MovieResponseList>(`https://www.omdbapi.com/?s=${title}&page=${page}${fieldYear}&
+    return this.http.get<MovieListResponse>(`https://www.omdbapi.com/?s=${title}&page=${page}${fieldYear}&
     type=movie&apikey=${environment.omdApiKey}`)
       .pipe(map(res => {
         if (res.Response === 'False') {
@@ -71,7 +71,7 @@ export class MovieListService {
       }));
   }
 
-  private toClient(res: MovieResponseList): MovieList {
+  private toClient(res: MovieListResponse): MovieList {
     return {
       movies: res.Search.map(item => ({
         title: item.Title,

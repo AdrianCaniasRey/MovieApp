@@ -1,14 +1,17 @@
-import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable, Subject } from 'rxjs';
-import { MovieDetail } from 'src/app/models/movie-detail/movie-detail.model';
+import { map } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment';
+import { MovieDetail } from 'src/app/models/movie-detail/movie-detail.model';
+import { MovieDetailResponse } from 'src/app/models/movie-detail/movie-detail-responde.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService {
+export class MovieDetailService {
 
   retrieveMovie: Subject<MovieDetail> = new Subject();
   private movie: MovieDetail;
@@ -20,7 +23,7 @@ export class MovieService {
 
   getMovie(id) {
     if (this.movie && this.lastMovieId === id) {
-      console.log('returning cached movie');
+      console.log('[returning cached movie]');
       this.retrieveMovie.next(this.movie);
     } else {
       console.log('fetching new movie');
@@ -30,8 +33,8 @@ export class MovieService {
 
   private retrieveFromOmdb(id) {
     this.omdbGetMovie(id).subscribe({
-      next: (res) => {
-        this.movie = res;
+      next: (movie) => {
+        this.movie = movie;
         this.lastMovieId = id;
         this.retrieveMovie.next(this.movie);
       },
@@ -43,11 +46,25 @@ export class MovieService {
 
 
   private omdbGetMovie(id: string): Observable<MovieDetail> {
-    return this.http.get<MovieDetail>(`https://www.omdbapi.com/?i=${id}&apikey=${environment.omdApiKey}`).pipe(map(res => {
+    return this.http.get<MovieDetailResponse>(`https://www.omdbapi.com/?i=${id}&apikey=${environment.omdApiKey}`).pipe(map(res => {
       if (res.Response === 'False') {
         throw new Error(res.Error);
       }
-      return res;
+      return this.toClient(res);
     }));
+  }
+
+  private toClient(res: MovieDetailResponse): MovieDetail {
+    return {
+      title: res.Title,
+      year: res.Year,
+      released: res.Released,
+      runtime: res.Runtime,
+      genre: res.Genre,
+      director: res.Director,
+      poster: res.Poster,
+      plot: res.Plot,
+      actors: res.Actors,
+    };
   }
 }

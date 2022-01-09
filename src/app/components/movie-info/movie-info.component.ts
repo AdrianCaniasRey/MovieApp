@@ -17,16 +17,16 @@ export class MovieInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.genres = this.movie.Genre.split(',').map(g => g.trim());
-    this.actors = this.movie.Actors.split(',').map(a => a.trim());
-    this.directors = this.movie.Director.split(',').map(d => d.trim());
+    this.genres = this.movie.genre.split(',').map(g => g.trim());
+    this.actors = this.movie.actors.split(',').map(a => a.trim());
+    this.directors = this.movie.director.split(',').map(d => d.trim());
     this.checkPlot();
   }
 
   checkPlot() {
     const invalidsPlot = ['N/A', ''];
-    if (this.movie.Plot && !invalidsPlot.includes(this.movie.Plot.trim().toUpperCase())) {
-      this.plot = this.movie.Plot;
+    if (this.movie.plot && !invalidsPlot.includes(this.movie.plot.trim().toUpperCase())) {
+      this.plot = this.movie.plot;
     } else {
       this.plot = 'No plot available';
     }

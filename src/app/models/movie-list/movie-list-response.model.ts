@@ -1,12 +1,12 @@
-export interface MovieResponseItem {
+export interface MovieItemResponse {
     Title: string;
     Year: string;
     imdbID: string;
     Poster: string;
 }
 
-export interface MovieResponseList {
-    Search: MovieResponseItem[];
+export interface MovieListResponse {
+    Search: MovieItemResponse[];
     totalResults: string;
     Response?: string;
     Error?: string;
