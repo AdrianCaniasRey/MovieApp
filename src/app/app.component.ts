@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StatusBar } from '@capacitor/status-bar';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    this.initializeApp();
+  }
+
+  private initializeApp() {
+    // Set background color of status bar in android
+    StatusBar.setBackgroundColor({ color: '#3880ff' });
+  }
 }
