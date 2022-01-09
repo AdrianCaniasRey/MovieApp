@@ -10,7 +10,7 @@ import { MovieDetailPage } from './movie-detail.page';
 import { MovieInfoComponent } from 'src/app/components/movie-info/movie-info.component';
 import { MovieInfoModule } from 'src/app/components/movie-info/movie-info.module';
 
-fdescribe('MovieDetailPage', () => {
+describe('MovieDetailPage', () => {
   let component: MovieDetailPage;
   let fixture: ComponentFixture<MovieDetailPage>;
 
