@@ -1,12 +1,16 @@
-import { ToastService } from './../../../services/toast.service';
-import { MovieSearchFormComponent } from './../../../components/movie-search-form/movie-search-form.component';
-import { MovieList } from 'src/app/models/movie-list/movies-list.model';
-import { MovieListService } from 'src/app/services/movies/list/movie-list.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+// Angular
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+// Ionic
 import { ViewWillEnter } from '@ionic/angular';
+// RsJS
 import { Observable } from 'rxjs';
+// My Models
+import { MovieList } from 'src/app/models/movie-list/movies-list.model';
+// My Services
+import { ToastService } from 'src/app/services/toast.service';
+import { MovieListService } from 'src/app/services/movies/list/movie-list.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -14,8 +18,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./movie-list.page.scss'],
 })
 export class MovieListPage implements OnInit, ViewWillEnter {
-
-  @ViewChild(MovieSearchFormComponent) searchBar: MovieSearchFormComponent;
 
   movieList$: Observable<MovieList>;
   searchForm: FormGroup;
@@ -32,6 +34,7 @@ export class MovieListPage implements OnInit, ViewWillEnter {
   }
 
   ngOnInit() {
+    console.log('[MovieListPage] ngOnInit: ');
     this.movieList$ = this.moviesService.retriveMovies.asObservable();
     this.moviesService.movieServiceAlerts.subscribe(alert => {
       this.presentAlert(alert);
@@ -39,18 +42,20 @@ export class MovieListPage implements OnInit, ViewWillEnter {
   }
 
   searchBy(value) {
+    console.log('[MovieListPage] searchBy: ', value);
     this.moviesService.getMovies(true, value);
   }
 
   nextPage(event) {
+    console.log('[MovieListPage] nextPage: ');
     this.moviesService.getMovies(true);
     event.target.complete();
   }
 
   openMovieDetail(id, title) {
+    console.log('[MovieListPage] openMovieDetail: ', id);
     this.router.navigate([`movie-detail/${id}`, { title }]);
   }
-
 
   private async presentAlert(alert: string) {
     this.toast.show(alert);

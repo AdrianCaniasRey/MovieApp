@@ -1,10 +1,14 @@
-import { MovieListResponse } from './../../../models/movie-list/movie-list-response.model';
-import { MovieList } from 'src/app/models/movie-list/movies-list.model';
-import { Observable, Subject } from 'rxjs';
+// Angular
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// RxJS
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+// Environment
 import { environment } from 'src/environments/environment';
+// My Models
+import { MovieList } from 'src/app/models/movie-list/movies-list.model';
+import { MovieListResponse } from 'src/app/models/movie-list/movie-list-response.model';
 
 
 @Injectable({
@@ -27,26 +31,29 @@ export class MovieListService {
   ) { }
 
   getMovies(newSearch = false, searchFilter?) {
+    console.log('[MovieListService] getMovies: ', newSearch, searchFilter);
     if (searchFilter) {
       this.newSearch(searchFilter);
     }
     if (this.movieList?.movies.length && !newSearch) {
-      console.log('returning cached list');
+      console.log('[MovieListService] getMovies: returning cached movies');
       this.retriveMovies.next(this.movieList);
     } else {
-      console.log('fetching new list');
+      console.log('[MovieListService] getMovies: retrieving movies');
       this.retrieveFromOmdb(this.searchFilter.title, this.searchFilter.year);
     }
   }
 
   private newSearch(searchFilter) {
+    console.log('[MovieListService] newSearch: ', searchFilter);
     this.movieList = null;
     this.lastPage = 1;
     this.searchFilter = searchFilter;
   }
 
   private retrieveFromOmdb(title: string, year: number) {
-    console.log('retrieving from omdb on page: ', this.lastPage);
+    console.log('[MovieListService] retrieveFromOmdb: ');
+    console.table({ ...this.searchFilter, page: this.lastPage });
     this.omdbGetMovies(title, year, this.lastPage).subscribe({
       next: (res) => {
         this.movieList = {
@@ -57,7 +64,7 @@ export class MovieListService {
         this.retriveMovies.next(this.movieList);
       },
       error: (err) => {
-        console.error(err);
+        console.error('[MovieListService] retrieveFromOmdb: ', err);
         this.movieServiceAlerts.next(err.message);
       }
     });
@@ -76,6 +83,7 @@ export class MovieListService {
   }
 
   private toClient(res: MovieListResponse): MovieList {
+    console.log('[MovieListService] toClient');
     return {
       movies: res.Search.map(item => ({
         title: item.Title,
