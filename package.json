@@ -16,6 +16,8 @@
     "android_generate_debug_apk": "ionic capacitor build android --no-open && cd android && gradlew assembleDebug && cd ..",
     "android_generate_prod_apk": "ionic capacitor build android --no-open --release --prod && cd android && gradlew assembleRelease && cd ..",
     "android_run": "ionic capacitor run android",
+    "ios_build_debug": "ionic capacitor build ios",
+    "ios_build_prod": "ionic capacitor build ios --no-open --release --prod",
     "ios_run": "ionic capacitor run ios"
   },
   "private": true,

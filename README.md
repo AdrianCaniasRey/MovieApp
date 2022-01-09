@@ -33,7 +33,19 @@ Para la compilacion de la app tenemos varias opciones las cuales se ejecutaran d
 - Generación de apk firmada para producción
 `npm run android_generate_prod_apk`
 
-## Ejecutar en emulador / dispositivo físico
+### Ejecutar en emulador / dispositivo físico
 Para poder ejecutar la app directamente en un emulador o dispositivo ejecutar.
 ** Es necesario tener conectado un dispositvo fisico con la depuracion por usb activa o tener creado un emulador desde android studio:
 `npm run android_run`
+
+## IOS
+### Compilaciones
+Para la compilacion de la app tenemos varias opciones las cuales se ejecutaran desde los scripts que se encuentran en el package.json
+- Compilación de la app para debug
+`npm run ios_build_debug`
+- Compilación de la app para producción
+`npm run ios_build_prod`
+
+### Ejecutar en emulador / dispositivo físico
+Para poder ejecutar la app directamente en un emulador o dispositivo ejecutar.
+`npm run ios_run`
